@@ -3,8 +3,8 @@ import './newsletter.css'
 
 function NewsLetter() {
 
-    const [fullName, setFullName] = React.useState('')
-    const [email, setEmail] = React.useState('')
+    const [fullName, setFullName] = React.useState('Some name')
+    const [email, setEmail] = React.useState('email@domain.com')
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -17,12 +17,12 @@ function NewsLetter() {
             <h2>Join Our Newsletter</h2>
             <div>
                 <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" name="name"
+                <input type="text" id="name" name="name" value={fullName}
                     onChange={(event) => setFullName(event.target.value)} />
             </div>
             <div>
                 <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" name="email"
+                <input type="email" id="email" name="email" value={email}
                     onChange={(event) => setEmail(event.target.value)} />
             </div>
             <button type="submit">Subscribe</button>
