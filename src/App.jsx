@@ -1,8 +1,10 @@
+import NewsLetter from "./components/NewsLetter"
+
 function App() {
 
   return (
     <>
-      <h1>React</h1>
+      <NewsLetter />
     </>
   )
 }
