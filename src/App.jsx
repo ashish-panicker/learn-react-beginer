@@ -1,8 +1,10 @@
+import './index.css'
+import ProductList from './products/ProductList'
 function App() {
 
   return (
     <>
-      <h1>React</h1>
+      <ProductList />
     </>
   )
 }
