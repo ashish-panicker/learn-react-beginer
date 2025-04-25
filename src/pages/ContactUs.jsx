@@ -16,9 +16,9 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen px-6 py-12 bg-white text-gray-800 max-w-2xl mx-auto">
+    <div className="px-6 py-12 bg-white text-gray-800 max-w-2xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
-      <form onSubmit={handleSubmit} className="bg-gray-100 p-8 rounded-xl shadow-md space-y-6">
+      <form onSubmit={handleSubmit} className="p-8 rounded-xl shadow-md space-y-6">
         <div>
           <label className="block font-semibold mb-2">Name</label>
           <input
@@ -27,7 +27,8 @@ export default function ContactUs() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 rounded-md border border-black-300
+             focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -39,7 +40,8 @@ export default function ContactUs() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 rounded-md border border-black-300
+             focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -50,7 +52,8 @@ export default function ContactUs() {
             value={formData.message}
             onChange={handleChange}
             required
-            className="w-full p-3 h-32 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 h-32 rounded-md border border-black-300
+             focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
         </div>
 

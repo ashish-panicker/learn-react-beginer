@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 function Navbar() {
   return (
@@ -9,27 +10,27 @@ function Navbar() {
             Application Logo
           </div>
           <div className="links">
-            <a
-              href="#"
-              class="rounded-md px-3 py-2 text-sm font-medium text-white 
+            <Link
+              to="home"
+              className="rounded-md px-3 py-2 text-sm font-medium text-white 
                 hover:bg-gray-700 hover:text-white"
             >
               Home
-            </a>
-            <a
-              href="#"
-              class="rounded-md px-3 py-2 text-sm font-medium text-white 
+            </Link>
+            <Link
+              to="about"
+              className="rounded-md px-3 py-2 text-sm font-medium text-white 
                 hover:bg-gray-700 hover:text-white"
             >
               About
-            </a>
-            <a
-              href="#"
-              class="rounded-md px-3 py-2 text-sm font-medium text-white 
+            </Link>
+            <Link
+              to="contact"
+              className="rounded-md px-3 py-2 text-sm font-medium text-white 
                 hover:bg-gray-700 hover:text-white"
             >
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       </div>
