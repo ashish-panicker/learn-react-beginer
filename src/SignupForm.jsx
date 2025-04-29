@@ -1,9 +1,11 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function SignupForm() {
 	//init formState
-	const initFormState = { username: '', email: '', gender: '' }
+	const initFormState = { username: '', email: '', gender: '', dateOfBirth: '' }
 
 	// define your schema used for validation
 	const yupSchema = Yup.object({
@@ -14,6 +16,10 @@ export default function SignupForm() {
 			.email('Provide a valid email')
 			.required('Email is mandatory'),
 		gender: Yup.string().required('Gender must be provided'),
+		dateOfBirth: Yup.date()
+			.nullable()
+			.max(new Date(), 'Date of birth cannot be in the future')
+			.required('Date of birth is mandatory'),
 	})
 
 	const formObject = useFormik({
@@ -72,6 +78,31 @@ export default function SignupForm() {
 					{formObject.touched.email && formObject.errors.email ? (
 						<div className='text-sm font-semibold text-red-500 py-1 mb-1'>
 							{formObject.errors.email}
+						</div>
+					) : null}
+				</div>
+				{/* date of birth */}
+				<div className='mb-4'>
+					<label
+						htmlFor='dateOfBirth'
+						className='block text-gray-700 font-semibold mb-1'>
+						Date of birth
+					</label>
+					<DatePicker
+						className='w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400'
+						name='dateOfBirth'
+						showYearDropdown
+						scrollableYearDropdown
+						yearDropdownItemNumber={100}
+						dateFormat='dd-MM-yyyy'
+						maxDate={new Date()}
+						selected={formObject.values.dateOfBirth}
+						onChange={(date) => formObject.setFieldValue('dateOfBirth', date)}
+						onBlur={formObject.handleBlur}
+					/>
+					{formObject.touched.dateOfBirth && formObject.errors.dateOfBirth ? (
+						<div className='text-sm font-semibold text-red-500 py-1 mb-1'>
+							{formObject.errors.dateOfBirth}
 						</div>
 					) : null}
 				</div>
