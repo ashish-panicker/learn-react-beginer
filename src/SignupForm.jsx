@@ -5,7 +5,13 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 export default function SignupForm() {
 	//init formState
-	const initFormState = { username: '', email: '', gender: '', dateOfBirth: '' }
+	const initFormState = {
+		username: '',
+		email: '',
+		gender: '',
+		dateOfBirth: '',
+		agreeToTerms: false,
+	}
 
 	// define your schema used for validation
 	const yupSchema = Yup.object({
@@ -20,6 +26,10 @@ export default function SignupForm() {
 			.nullable()
 			.max(new Date(), 'Date of birth cannot be in the future')
 			.required('Date of birth is mandatory'),
+		agreeToTerms: Yup.boolean().oneOf(
+			[true],
+			'Must agree to terms and conditions'
+		),
 	})
 
 	const formObject = useFormik({
@@ -160,10 +170,32 @@ export default function SignupForm() {
 					) : null}
 				</div>
 
+				{/*  Agree to terms */}
+				<div className='mb-6'>
+					<label
+						className='flex items-center justify-start gap-2 text-gray-700 font-semibold 
+                        mb-1'>
+						<input
+							type='checkbox'
+							name='agreeToTerms'
+							checked={formObject.values.agreeToTerms}
+							onChange={formObject.handleChange}
+						/>
+						I Agree to Terms and Conditions
+					</label>
+					{formObject.touched.agreeToTerms && formObject.errors.agreeToTerms ? (
+						<div className='text-sm font-semibold text-red-500 py-1 mb-1'>
+							{formObject.errors.agreeToTerms}
+						</div>
+					) : null}
+				</div>
+
 				{/* Submit Button */}
 				<button
+					// disabled={!formObject.values.agreeToTerms}
 					type='submit'
-					className='w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl transition duration-300'>
+					className='w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 
+                        px-4 rounded-xl transition duration-300 disabled:bg-blue-300'>
 					Register
 				</button>
 			</form>
