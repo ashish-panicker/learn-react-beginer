@@ -2,26 +2,22 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 export default function SignupForm() {
-	const validate = (values) => {
-		const errors = {}
-		if (!values.username) {
-			errors.username = 'Required'
-		} else if (values.username.length > 15) {
-			errors.username = 'Must be 15 characters or less'
-		}
-		if (!values.email) {
-			errors.email = 'Required'
-		} else if (
-			!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-		) {
-			errors.email = 'Invalid email address'
-		}
-		return errors
-	}
+	//init formState
+	const initFormState = { username: '', email: '' }
+
+	// define your schema used for validation
+	const yupSchema = Yup.object({
+		username: Yup.string()
+			.max(15, 'Username cannot be more that 15 chars in length')
+			.required('Username is mandatory'),
+		email: Yup.string()
+			.email('Provide a valid email')
+			.required('Email is mandatory'),
+	})
 
 	const formObject = useFormik({
-		initialValues: { username: '', email: '' },
-		validate,
+		initialValues: initFormState,
+		validationSchema: yupSchema,
 		onSubmit: (formValue) => console.log(formValue),
 	})
 
