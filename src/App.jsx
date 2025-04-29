@@ -1,10 +1,13 @@
+import './index.css'
+import SignupForm from './SignupForm'
 function App() {
-
-  return (
-    <>
-      <h1>React</h1>
-    </>
-  )
+	return (
+		<>
+			<main className='container mx-auto'>
+				<SignupForm />
+			</main>
+		</>
+	)
 }
 
 export default App
