@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 
 export default function SignupForm() {
 	//init formState
-	const initFormState = { username: '', email: '' }
+	const initFormState = { username: '', email: '', gender: '' }
 
 	// define your schema used for validation
 	const yupSchema = Yup.object({
@@ -13,6 +13,7 @@ export default function SignupForm() {
 		email: Yup.string()
 			.email('Provide a valid email')
 			.required('Email is mandatory'),
+		gender: Yup.string().required('Gender must be provided'),
 	})
 
 	const formObject = useFormik({
@@ -76,17 +77,23 @@ export default function SignupForm() {
 				</div>
 
 				{/* Gender */}
-				{/* <div className='mb-6'>
+				<div className='mb-6'>
 					<label className='block text-gray-700 font-semibold mb-1'>
 						Gender
 					</label>
-					<div className='flex items-center space-x-4'>
+					<div
+						className='flex items-center space-x-4'
+						role='group'
+						aria-labelledby='radio-group'>
 						<label className='inline-flex items-center'>
 							<input
 								type='radio'
 								name='gender'
 								value='male'
 								className='form-radio text-blue-500'
+								onChange={formObject.handleChange}
+								onBlur={formObject.handleBlur}
+								checked={formObject.values.gender === 'male'}
 							/>
 							<span className='ml-2'>Male</span>
 						</label>
@@ -96,6 +103,9 @@ export default function SignupForm() {
 								name='gender'
 								value='female'
 								className='form-radio text-pink-500'
+								onChange={formObject.handleChange}
+								onBlur={formObject.handleBlur}
+								checked={formObject.values.gender === 'female'}
 							/>
 							<span className='ml-2'>Female</span>
 						</label>
@@ -105,11 +115,19 @@ export default function SignupForm() {
 								name='gender'
 								value='other'
 								className='form-radio text-gray-500'
+								onChange={formObject.handleChange}
+								onBlur={formObject.handleBlur}
+								checked={formObject.values.gender === 'other'}
 							/>
 							<span className='ml-2'>Other</span>
 						</label>
 					</div>
-				</div> */}
+					{formObject.touched.gender && formObject.errors.gender ? (
+						<div className='text-sm font-semibold text-red-500 py-1 mb-1'>
+							{formObject.errors.gender}
+						</div>
+					) : null}
+				</div>
 
 				{/* Submit Button */}
 				<button
