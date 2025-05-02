@@ -10,6 +10,7 @@ export default function SignupForm() {
 		email: '',
 		gender: '',
 		dateOfBirth: '',
+		country: '',
 		agreeToTerms: false,
 	}
 
@@ -30,6 +31,7 @@ export default function SignupForm() {
 			[true],
 			'Must agree to terms and conditions'
 		),
+		country: Yup.string().required('Country must be provided'),
 	})
 
 	const formObject = useFormik({
@@ -98,21 +100,47 @@ export default function SignupForm() {
 						className='block text-gray-700 font-semibold mb-1'>
 						Date of birth
 					</label>
-					<DatePicker
+					<div className='w-full'>
+						<DatePicker
+							className='w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400'
+							name='dateOfBirth'
+							showYearDropdown
+							scrollableYearDropdown
+							yearDropdownItemNumber={100}
+							dateFormat='dd-MM-yyyy'
+							maxDate={new Date()}
+							selected={formObject.values.dateOfBirth}
+							onChange={(date) => formObject.setFieldValue('dateOfBirth', date)}
+							onBlur={formObject.handleBlur}
+						/>
+						{formObject.touched.dateOfBirth && formObject.errors.dateOfBirth ? (
+							<div className='text-sm font-semibold text-red-500 py-1 mb-1'>
+								{formObject.errors.dateOfBirth}
+							</div>
+						) : null}
+					</div>
+				</div>
+				{/* Country of origin */}
+				<div className='mb-4'>
+					<label
+						htmlFor='country'
+						className='block text-gray-700 font-semibold mb-1'>
+						Country
+					</label>
+					<select
 						className='w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400'
-						name='dateOfBirth'
-						showYearDropdown
-						scrollableYearDropdown
-						yearDropdownItemNumber={100}
-						dateFormat='dd-MM-yyyy'
-						maxDate={new Date()}
-						selected={formObject.values.dateOfBirth}
-						onChange={(date) => formObject.setFieldValue('dateOfBirth', date)}
+						name='country'
+						id='country'
 						onBlur={formObject.handleBlur}
-					/>
-					{formObject.touched.dateOfBirth && formObject.errors.dateOfBirth ? (
+						value={formObject.values.country}
+						onChange={formObject.handleChange}>
+						<option value=''>Select a country</option>
+						<option value='India'>India</option>
+						<option value='uk'>UK</option>
+					</select>
+					{formObject.touched.country && formObject.errors.country ? (
 						<div className='text-sm font-semibold text-red-500 py-1 mb-1'>
-							{formObject.errors.dateOfBirth}
+							{formObject.errors.country}
 						</div>
 					) : null}
 				</div>
