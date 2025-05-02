@@ -1,0 +1,23 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+button {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 1.5rem;
+	padding: 0.7rem;
+}
+.app {
+	padding: 2rem;
+}
+.light {
+	background-color: white;
+	color: black;
+}
+
+.dark {
+	background-color: rgb(4, 110, 108);
+	color: white;
+}
