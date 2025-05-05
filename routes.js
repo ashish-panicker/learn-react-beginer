@@ -9,7 +9,6 @@ import Home from './src/pages/Home'
 import AboutUs from './src/pages/AboutUs'
 import ContactUs from './src/pages/ContactUs'
 import Layout from './src/pages/Layout'
-import { Component } from 'react'
 import PageNotFound from './src/pages/PageNotFound'
 
 const routes = [
